@@ -1,4 +1,6 @@
 
+import Util.LoggerManager
+import Util.init
 import com.onmi_tech.LogLevel
 import com.onmi_tech.SNLogger
 import net.dv8tion.jda.api.JDA
@@ -6,17 +8,21 @@ import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.interactions.commands.build.Commands
 import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction
+import org.jetbrains.exposed.sql.Database
 import org.yaml.snakeyaml.Yaml
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.sql.Connection
+import java.sql.DriverManager
 import java.time.LocalDate
 
 object Main {
     var data: MutableMap<String?, Any?>? = null
     var language: String? = "en_UK"
-
+    var database_link = "jdbc:sqlite:data/test.db"
     var my_obj: LocalDate = LocalDate.now()
+    var Connection: Connection? = null
 
     val sn: SNLogger = SNLogger(LogLevel.DEBUG)
 
@@ -46,10 +52,13 @@ object Main {
                 )
 
                 commands.queue()
-                // LoggerManager.status(data!!.get("Logger.bot.running").toString(), LogLevel.INFO)
+                Class.forName("org.sqlite.JDBC")
+                Connection = DriverManager.getConnection(database_link)
+                init()
+                LoggerManager.status(data!!.get("Logger.bot.running").toString(), LogLevel.INFO)
             }
         } catch (e: IOException) {
-            // LoggerManager.status(e.message, LogLevel.ERROR)
+             LoggerManager.status(e.message, LogLevel.ERROR)
         }
     }
 }

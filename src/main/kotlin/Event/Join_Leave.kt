@@ -10,6 +10,7 @@ import java.awt.Color
 
 class Join_Leave : ListenerAdapter() {
     public override fun onGuildMemberJoin(event: GuildMemberJoinEvent) {
+        if (Main.data!!.get("JOIN_CHANNEL") == null) return
         val text_channel: TextChannel? =
             event.getGuild().getTextChannelById((Main.data!!.get("JOIN_CHANNEL") as String?)!!.toLong())
         text_channel?.sendMessageEmbeds(

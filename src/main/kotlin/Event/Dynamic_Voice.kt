@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 
 class Dynamic_Voice : ListenerAdapter() {
     public override fun onGuildVoiceUpdate(event: GuildVoiceUpdateEvent) {
+        if (Main.data!!.get("Dynamic_Voice_ID") == null) return
         val id = Main.data!!.get("Dynamic_Voice_ID") as MutableList<String>
 
         for (s in id) {
