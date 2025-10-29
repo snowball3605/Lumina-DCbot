@@ -1,4 +1,6 @@
 
+import com.onmi_tech.LogLevel
+import com.onmi_tech.SNLogger
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.interactions.commands.build.Commands
@@ -15,6 +17,8 @@ object Main {
     var language: String? = "en_UK"
 
     var my_obj: LocalDate = LocalDate.now()
+
+    val sn: SNLogger = SNLogger(LogLevel.DEBUG)
 
     @JvmStatic
     fun main(args: Array<String>) {
