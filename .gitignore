@@ -5,6 +5,7 @@ target/
 .kotlin
 SETTING.yml
 /data/
+output_*
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
