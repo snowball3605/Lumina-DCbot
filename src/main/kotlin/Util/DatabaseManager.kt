@@ -32,10 +32,6 @@ fun delete(Table: String,Key_Column: String , Key: String): Boolean {
     }
 }
 
-fun main() {
-    delete("level", "id", "705674606043856956")
-}
-
 fun get(Table: String, Column: String, Key_Column: String, Key: String): Any? {
     DriverManager.getConnection(Main.database_link).use {
         val statement = Main.Connection?.createStatement()
@@ -47,5 +43,17 @@ fun get(Table: String, Column: String, Key_Column: String, Key: String): Any? {
         } else {
             null
         }
+    }
+}
+
+fun getAll(MySQl: String, Column: String): Any {
+    var s = mutableListOf<Any>()
+    DriverManager.getConnection(Main.database_link).use {
+        val statement = Main.Connection?.createStatement()
+        val resultSet = statement?.executeQuery(MySQl)
+         while (resultSet?.next() == true) {
+             s.add(resultSet.getLong(Column))
+         }
+        return s
     }
 }

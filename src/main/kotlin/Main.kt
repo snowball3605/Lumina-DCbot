@@ -1,5 +1,7 @@
 
+import Util.LanguageManager
 import Util.LoggerManager
+import Util.getAll
 import Util.init
 import com.onmi_tech.LogLevel
 import com.onmi_tech.SNLogger
@@ -47,8 +49,9 @@ object Main {
                 val commands: CommandListUpdateAction = builder.updateCommands()
 
                 commands.addCommands(
-                    Commands.slash("info", "info about bot"),
-                    Commands.slash("reload", "Reload the settig")
+                    Commands.slash("info", LanguageManager.get("Info.message").toString()),
+                    Commands.slash("reload", LanguageManager.get("Reload.Info").toString()),
+                    Commands.slash("rank", LanguageManager.get("Level.message.Info").toString()),
                 )
 
                 commands.queue()

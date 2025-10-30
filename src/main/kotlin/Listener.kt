@@ -1,5 +1,6 @@
 
 import Commands.Info
+import Commands.Rank
 import Commands.Reload
 import Event.Dynamic_Voice
 import Event.Experience_SendMessage
@@ -11,6 +12,7 @@ import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.rank
 
 class Listener : ListenerAdapter() {
     var info: Info = Info()
@@ -18,12 +20,14 @@ class Listener : ListenerAdapter() {
     var dynamic_voice: Dynamic_Voice = Dynamic_Voice()
     var reload: Reload = Reload()
     var Experience_SendMessage: Experience_SendMessage = Experience_SendMessage()
+    var Rank: Rank = Rank()
     public override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
         var message = Main.data!!.get("Logger.bot.commands").toString()
         message = message.replace("%commands%", event.getName())
          LoggerManager.status(event.getName() + " " + message, LogLevel.INFO)
         reload.onSlashCommandInteraction(event)
         info.onSlashCommandInteraction(event)
+        Rank.onSlashCommandInteraction(event)
     }
 
     public override fun onGuildMemberJoin(event: GuildMemberJoinEvent) {
