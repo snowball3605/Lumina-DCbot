@@ -46,7 +46,7 @@ class Main : Plugin, ListenerAdapter() {
                 }
             }
         }
-
+        // test ci/cd
         jda.addEventListener(this)
         Files.newInputStream(Paths.get("plugins/Info/SETTING.yml")).use { `in` ->
             val yaml: Yaml = Yaml()
