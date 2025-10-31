@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="Core:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Core_jar</output-path>
+    <output-path>$PROJECT_DIR$/re</output-path>
     <root id="archive" name="Core.jar">
       <element id="module-output" name="Core" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/club/minnced/opus-java-api/1.1.1/opus-java-api-1.1.1.jar" path-in-jar="/" />
