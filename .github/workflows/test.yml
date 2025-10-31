@@ -19,6 +19,9 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B clean package
+
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
         with:
           name: core
           path: out/*.jar
