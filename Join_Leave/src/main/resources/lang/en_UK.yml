@@ -1,0 +1,2 @@
+Welcome.Title: "Welcome"
+Welcome.description: "Welcome %user_name% to %guild_name%" # %mention%, %user_name%, %guild_name%

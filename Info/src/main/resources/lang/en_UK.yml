@@ -1,0 +1,4 @@
+slash_command_use: "run slash command: %name%"
+Info.message: "Info"
+Info.message.Created: "Created in: %created_data%"
+Info.message.Server_Time: "Server Time: %server_time%"
