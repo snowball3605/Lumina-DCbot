@@ -13,8 +13,8 @@
 
 ## Introduction
 
-Lumina is a **multi-functional** Discord bot that aims to make server management something everyone can do.
-Lumina is developed based on Kotlin, JDA, **Responsive Programming**. It **supports 10 languages**, including common ones like Chinese and English, and allows users to **translate text as needed**.
+Lumina is a Discord bot that combines **plug-in functionality** and **hot reloading**.
+allowing users to customize the features they want.
 
 ## Functions
 
@@ -29,37 +29,23 @@ Lumina is developed based on Kotlin, JDA, **Responsive Programming**. It **suppo
 
 ## How to use？
 
-### 1. Download latest Lumina-x.x.x.zip and upzip
-![img.png](photo/img.png)
+### 1. Download latest Bot-core
+![img_1.png](photo/img_1.png)
 
 ### 2. Enter your SETTING.yml
 ```
-TOKEN: DISCORD_BOT_TOKEN  # NOT NULL, your discord bot token
-JOIN_CHANNEL: CHANNEL_ID_LONG # NULL when you don't use it, [Text Channel id]  Send welcome message when new user join
+TOKEN: "xxxxxxxxx" # your discord token
 
-Dynamic_Voice_ID:
-- "CHANNEL_ID_LONG-CATEGORY_ID_LONG" # NULL when you don't use it, [Voice channel id] create a new voice channel in category and move user to new voice channel when user join this voice channel
+lang: en_UK
 
-Dynamic_Voice_Name: "%Voice_Name% - VC" # NOT NULL if you use this function, name when create a new voice channel, %Voice_Name% meaning this user name
-
-Owner_Discord_ID:
-- OWNER_USER_ID_LONG" # NOT NULL, Enter owner discord id
-
-Owner_Discord_Server_ID: "OWNER_DISCORD_SERVER_ID" # NOT NULL, Enter this bot's main discord group id
-Upgrade_Message_Channel: "CHANNEL_ID_LONG" # NULL when you don't use it, Send level up when user send message get the exp
-
-lang: en_UK # Please enter your preferred language in this bot.
-like: xx_XX
-Please check /lang/xx_XX.yml
-
-Logger_Output: true ## true if you want this bot send log in contro
+Logger: true # true when you like to output log
 ```
 
 ### 3. Run
 
 ```
 # must JDA 25+
-java -jar Lumina_x.x.x.jar
+java -jar Bot-core.jar
 ```
 
 ### 4. Reload config
@@ -97,6 +83,10 @@ Enter slash command /reload in any group when you edit config, but only owner ca
 - Added README.md
 - Slash Command /rank
 - more language
+
+### v1.0.5
+
+- Add plug-in functionality
 
 ## Problem Reporting
 

@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 .kotlin
 output*
+Pack/
 plugins/
 **/target
 **/src/test
