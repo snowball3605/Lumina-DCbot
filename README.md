@@ -56,6 +56,8 @@ Enter slash command /reload in any group when you edit config, but only owner ca
 
 - /info - Info about this bot
 - /rank - Check how many exp you have
+
+## console Command Guild
 - /reload - Reload config setting
 
 ## Update Log
