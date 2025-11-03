@@ -6,13 +6,14 @@ import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
+import net.dv8tion.jda.api.interactions.commands.build.Commands
+import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction
 import okio.FileNotFoundException
 import org.yaml.snakeyaml.Yaml
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.time.LocalDateTime
-import kotlin.math.E
 
 
 var lang: MutableMap<String?, Any?>? = null
@@ -56,10 +57,14 @@ class Main : Plugin, ListenerAdapter() {
             val yaml: Yaml = Yaml()
             lang = yaml.load(`in`)
         }
+
+        val commands: CommandListUpdateAction = jda.updateCommands()
+        commands.addCommands(
+            Commands.slash("info", "info")
+        )
     }
 
     override fun onDisable() {
-        TODO("Not yet implemented")
     }
 
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {

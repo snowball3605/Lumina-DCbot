@@ -10,7 +10,7 @@ object PluginLoader {
     private val pluginFolder = File("plugins")
     private val yaml = Yaml()
 
-    fun loadPlugins(jda: net.dv8tion.jda.api.JDA, Data: MutableMap<String?, Any?>?) {
+    fun loadPlugins(jda: net.dv8tion.jda.api.JDA, Data: MutableMap<String?, Any?>?, output: Boolean) {
         if (!pluginFolder.exists()) {
             pluginFolder.mkdirs()
             sn.warn("Created plugins folder.")
@@ -26,7 +26,7 @@ object PluginLoader {
 
         jarFiles.forEach { jarFile ->
             try {
-                loadPluginFromJar(jarFile, jda, Data)
+                loadPluginFromJar(jarFile, jda, Data, output)
             } catch (e: Exception) {
                 sn.error("Failed to load plugin ${jarFile.name}: ${e.message}")
                 e.printStackTrace()
@@ -34,8 +34,18 @@ object PluginLoader {
         }
     }
 
+    fun reloadPlugins(jda: JDA) {
+        sn.info("[PluginLoader] Reloading all plugins...")
+        disableAll(true)
+        loadPlugins(jda, data, false)
+        Thread.sleep(4500)
+        disableAll(false)
+        loadPlugins(jda, data, true)
+        sn.info("[PluginLoader] Reload complete!")
+    }
+
     @Suppress("UNCHECKED_CAST")
-    private fun loadPluginFromJar(jarFile: File, jda: JDA, Data: MutableMap<String?, Any?>?) {
+    private fun loadPluginFromJar(jarFile: File, jda: JDA, Data: MutableMap<String?, Any?>?, output: Boolean) {
         val jar = JarFile(jarFile)
 
         val pluginYmlEntry: JarEntry = jar.getJarEntry("plugin.yml")
@@ -65,15 +75,20 @@ object PluginLoader {
             e.printStackTrace()
         }
 
-        sn.info("Loaded plugin: $name $version by $author")
+        if (output) {
+            sn.info("Loaded plugin: $name $version by $author")
+        }
         jar.close()
     }
 
-    fun disableAll() {
+    fun disableAll(output: Boolean) {
         plugins.forEach {
             try {
                 it.onDisable()
-                sn.info("Disabled plugin: ${it.name}")
+                jda!!.removeEventListener(it)
+                if (output) {
+                    sn.info("Disable plugins: ${it.name}")
+                }
             } catch (e: Exception) {
                 sn.error("Error disabling ${it.name}: ${e.message}")
             }

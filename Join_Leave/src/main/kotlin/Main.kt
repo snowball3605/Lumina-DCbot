@@ -58,7 +58,6 @@ class Main(): Plugin, ListenerAdapter() {
     }
 
     override fun onDisable() {
-        TODO("Not yet implemented")
     }
 
     override fun onGuildMemberJoin(event: GuildMemberJoinEvent) {

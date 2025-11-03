@@ -25,6 +25,12 @@ fun main() {
         GatewayIntent.GUILD_MEMBERS,
         GatewayIntent.GUILD_PRESENCES).build()
 
-    PluginLoader.loadPlugins(jda as JDA, data)
+    PluginLoader.loadPlugins(jda as JDA, data, true)
+    val console = ConsoleCommandHandler(jda!!, PluginLoader)
+    console.start()
+
+    Runtime.getRuntime().addShutdownHook(Thread {
+        console.stopListening()
+    })
 }
 
